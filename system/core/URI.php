@@ -49,6 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		EllisLab Dev Team
  * @link		https://codeigniter.com/userguide3/libraries/uri.html
  */
+#[\AllowDynamicProperties]
 class CI_URI {
 
 	/**
@@ -97,6 +98,7 @@ class CI_URI {
 	 *
 	 * @return	void
 	 */
+
 	public function __construct()
 	{
 		$this->config =& load_class('Config', 'core');
