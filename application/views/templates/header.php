@@ -22,11 +22,49 @@
         <!-- Konten News -->
     </section>
 
-    <section class="navbar">
-        <!-- Konten Navbar -->
+    <!-- Navbar -->
+    <section class="navbar navbar-expand-lg navbar-light .bg-primary py-3">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="assets/images/icons/Logo.png" width="60" height="60" class="d-inline-block align-top mr-3" alt="Logo">
+            <div>
+                <h5 class="mb-0">SDN-2 JAMBU</h5>
+                <small class="text-muted">Sekolah Penggerak</small>
+            </div>
+        </a>
+        <div class="collapse d-flex navbar-collapse justify-content-end" id="mainNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="#">HOME</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">PROFIL</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">KESISWAAN</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">INFORMASI</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">GALERI</a></li>
+            </ul>
+        </div>
     </section>
 
+    <!-- Banner -->
     <section class="banner">
-        <!-- Konten Banner -->
+        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+            </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+            <img src="assets/images/banner/gambar1.jpg" class="d-block w-100" style="height: 600px; object-fit: cover;" alt="...">
+            </div>
+            <div class="carousel-item">
+            <img src="assets/images/banner/gambar2.jpg" class="d-block w-100" style="height: 600px; object-fit: cover;" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-target="#carouselExampleFade" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-target="#carouselExampleFade" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </button>
+        </div>
     </section>
 </header>
