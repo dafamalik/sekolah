@@ -13,7 +13,7 @@
     <!-- Flat UI -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flat-ui/2.3.0/css/flat-ui.min.css">
 
-    <title>Judul Website</title>
+    <title><?= $title;?></title>
 </head>
 <body>
 
@@ -25,7 +25,7 @@
     <!-- Navbar -->
     <section class="navbar navbar-expand-lg navbar-light .bg-primary py-3">
         <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="assets/images/icons/Logo.png" width="60" height="60" class="d-inline-block align-top mr-3" alt="Logo">
+            <img src="assets/images/icons/LogoSekolah.png" width="60" height="60" class="d-inline-block align-top mr-3" alt="Logo">
             <div>
                 <h5 class="mb-0">SDN-2 JAMBU</h5>
                 <small class="text-muted">Sekolah Penggerak</small>
