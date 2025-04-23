@@ -1,6 +1,6 @@
 <!-- Data Foto -->
 <?php
-$kumpulanVideo = [
+$dataPhoto = [
     [
         "image" => "gambar1.jpg",
         "title" => "Juara OSN",
@@ -31,16 +31,26 @@ $kumpulanVideo = [
     ],
 ];
 
-$jumlahVideoPerHalaman = 3;
-$jumlahVideo = count($kumpulanVideo);
-$jumlahHalaman = ceil($jumlahVideo / $jumlahVideoPerHalaman);
+//Jumlah foto yang ingin ditampilkan per halaman.
+$photoPerPages = 3;
 
-$halamanSaatIni = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
-if ($halamanSaatIni < 1 || $halamanSaatIni > $jumlahHalaman) {
-    $halamanSaatIni = 1;
+//total jumlah foto dalam array $dataPhoto.
+$photo = count($dataPhoto);
+
+//Menghitung jumlah total halaman yang dibutuhkan.
+$pages = ceil($photo / $photoPerPages);
+
+//cek apakah data foto nya ada atau engga, kalau ga ada halaman nya bakal muncul 1 halaman aja, dan kalau ada maka halaman nya bakal muncul sesuai data dari si foto.
+$currentPages = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
+
+//Memastikan bahwa nilai $currentPages valid, yaitu tidak kurang dari 1 dan tidak lebih dari total halaman.
+if ($currentPages < 1 || $currentPages > $pages) {
+    $currentPages = 1;
 }
-$indexAwal = ($halamanSaatIni - 1) * $jumlahVideoPerHalaman;
-$videoPerHalamanIni = array_slice($kumpulanVideo, $indexAwal, $jumlahVideoPerHalaman);
+
+//ngambil berapa foto yang dibutuhin dari $photoPerPages
+$firstIndex = ($currentPages - 1) * $photoPerPages;
+$photoThisPages = array_slice($dataPhoto, $firstIndex, $photoPerPages);
 
 $style = "<style>
     #lightbox {
@@ -71,6 +81,10 @@ $style = "<style>
         font-weight: bold;
         cursor: pointer;
     }
+
+    .card {
+        cursor: pointer; /* Menambahkan cursor pointer agar terlihat bisa diklik */
+    }
 </style>";
 
 ?>
@@ -81,11 +95,11 @@ $style = "<style>
     <div class="container py-5">
         <h4 class="text-center mb-4">Kegiatan Siswa-Siswi SDN Rawa Buaya 09</h4>
         <div class="row">
-            <?php if (!empty($videoPerHalamanIni)): ?>
-                <?php foreach ($videoPerHalamanIni as $kv): ?>
+            <?php if (!empty($photoThisPages)): ?>
+                <?php foreach ($photoThisPages as $kv): ?>
                     <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-                        <div class="card h-100 shadow-sm">
-                            <img src="<?= base_url('assets/images/banner/' . $kv["image"]); ?>" class="card-img-top gallery-image" alt="<?= $kv["title"]; ?>" style="cursor: pointer;" onclick="openLightbox('<?= base_url('assets/images/banner/' . $kv["image"]); ?>')">
+                        <div class="card h-100 shadow-sm" onclick="openLightbox('<?= base_url('assets/images/banner/' . $kv["image"]); ?>')">
+                            <img src="<?= base_url('assets/images/banner/' . $kv["image"]); ?>" class="card-img-top gallery-image" alt="<?= $kv["title"]; ?>">
                             <div class="card-body">
                                 <p class="card-title text-dark text-center font-weight-bold"><?= $kv["title"]; ?></p>
                             </div>
@@ -101,16 +115,16 @@ $style = "<style>
 
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
-                <li class="page-item <?php if ($halamanSaatIni == 1) echo 'disabled'; ?>">
-                    <a class="page-link" href="<?php if ($halamanSaatIni > 1) echo '?halaman=' . ($halamanSaatIni - 1); ?>" aria-label="Previous">
+                <li class="page-item <?php if ($currentPages == 1) echo 'disabled'; ?>">
+                    <a class="page-link" href="<?php if ($currentPages > 1) echo '?halaman=' . ($currentPages - 1); ?>" aria-label="Previous">
                         <span aria-hidden="true">«</span>
                     </a>
                 </li>
-                <?php for ($i = 1; $i <= $jumlahHalaman; $i++): ?>
-                    <li class="page-item <?php if ($halamanSaatIni == $i) echo 'active'; ?>"><a class="page-link" href="?halaman=<?= $i ?>"><?= $i ?></a></li>
+                <?php for ($i = 1; $i <= $pages; $i++): ?>
+                    <li class="page-item <?php if ($currentPages == $i) echo 'active'; ?>"><a class="page-link" href="?halaman=<?= $i ?>"><?= $i ?></a></li>
                 <?php endfor; ?>
-                <li class="page-item <?php if ($halamanSaatIni == $jumlahHalaman) echo 'disabled'; ?>">
-                    <a class="page-link" href="<?php if ($halamanSaatIni < $jumlahHalaman) echo '?halaman=' . ($halamanSaatIni + 1); ?>" aria-label="Next">
+                <li class="page-item <?php if ($currentPages == $pages) echo 'disabled'; ?>">
+                    <a class="page-link" href="<?php if ($currentPages < $pages) echo '?halaman=' . ($currentPages + 1); ?>" aria-label="Next">
                         <span aria-hidden="true">»</span>
                     </a>
                 </li>

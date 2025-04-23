@@ -1,5 +1,5 @@
 <?php
-$kumpulanVideo = [
+$dataVideo = [
     [
         "image" => "gambar1.jpg",
         "title" => "Juara OSN",
@@ -38,24 +38,24 @@ $kumpulanVideo = [
     // Tambahkan data lainnya...
 ];
 
-$jumlahVideoPerHalaman = 3;
-$jumlahVideo = count($kumpulanVideo);
-$jumlahHalaman = ceil($jumlahVideo / $jumlahVideoPerHalaman);
+$videoPerPages = 3;
+$video = count($dataVideo);
+$pages = ceil($video / $videoPerPages);
 
-$halamanSaatIni = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
-if ($halamanSaatIni < 1 || $halamanSaatIni > $jumlahHalaman) {
-    $halamanSaatIni = 1;
+$currentPages = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
+if ($currentPages < 1 || $currentPages > $pages) {
+    $currentPages = 1;
 }
-$indexAwal = ($halamanSaatIni - 1) * $jumlahVideoPerHalaman;
-$videoPerHalamanIni = array_slice($kumpulanVideo, $indexAwal, $jumlahVideoPerHalaman);
+$firstIndex = ($currentPages - 1) * $videoPerPages;
+$videoThisPages = array_slice($dataVideo, $firstIndex, $videoPerPages);
 ?>
 
 <html>
 <body>
     <div class="container py-5">
         <div class="row">
-            <?php if (!empty($videoPerHalamanIni)): ?>
-                <?php foreach ($videoPerHalamanIni as $kv): ?>
+            <?php if (!empty($videoThisPages)): ?>
+                <?php foreach ($videoThisPages as $kv): ?>
                     <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
                         <a href="<?= $kv["url"]; ?>" target="_blank">
                         <div class="card h-100 shadow-sm">
@@ -76,16 +76,16 @@ $videoPerHalamanIni = array_slice($kumpulanVideo, $indexAwal, $jumlahVideoPerHal
 
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
-                <li class="page-item <?php if ($halamanSaatIni == 1) echo 'disabled'; ?>">
-                    <a class="page-link" href="<?php if ($halamanSaatIni > 1) echo '?halaman=' . ($halamanSaatIni - 1); ?>" aria-label="Previous">
+                <li class="page-item <?php if ($currentPages == 1) echo 'disabled'; ?>">
+                    <a class="page-link" href="<?php if ($currentPages > 1) echo '?halaman=' . ($currentPages - 1); ?>" aria-label="Previous">
                         <span aria-hidden="true">«</span>
                     </a>
                 </li>
-                <?php for ($i = 1; $i <= $jumlahHalaman; $i++): ?>
-                    <li class="page-item <?php if ($halamanSaatIni == $i) echo 'active'; ?>"><a class="page-link" href="?halaman=<?= $i ?>"><?= $i ?></a></li>
+                <?php for ($i = 1; $i <= $pages; $i++): ?>
+                    <li class="page-item <?php if ($currentPages == $i) echo 'active'; ?>"><a class="page-link" href="?halaman=<?= $i ?>"><?= $i ?></a></li>
                 <?php endfor; ?>
-                <li class="page-item <?php if ($halamanSaatIni == $jumlahHalaman) echo 'disabled'; ?>">
-                    <a class="page-link" href="<?php if ($halamanSaatIni < $jumlahHalaman) echo '?halaman=' . ($halamanSaatIni + 1); ?>" aria-label="Next">
+                <li class="page-item <?php if ($currentPages == $pages) echo 'disabled'; ?>">
+                    <a class="page-link" href="<?php if ($currentPages < $pages) echo '?halaman=' . ($currentPages + 1); ?>" aria-label="Next">
                         <span aria-hidden="true">»</span>
                     </a>
                 </li>
