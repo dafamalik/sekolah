@@ -22,7 +22,7 @@ class Portal extends CI_Controller {
 	{
 		$data["title"] = "Project Sekolah";
 		$this->load->view('templates/header', $data);
-		$this->load->view('main/galery/galery');
+		$this->load->view('main/information/calendar');
         $this->load->view('templates/footer');
 	}
 }
