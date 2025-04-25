@@ -1,7 +1,7 @@
 <?php
 $dataPhoto = [
     [
-        "image" => "gambar1.jpg",
+        "image" => "gambar2.jpg",
         "title" => "Juara OSN",
         "kategori" => "Kegiatan SMPI Tahun 2018"
     ],
@@ -11,7 +11,7 @@ $dataPhoto = [
         "kategori" => "Kegiatan SMPI Tahun 2019"
     ],
     [
-        "image" => "gambar1.jpg",
+        "image" => "gambar2.jpg",
         "title" => "Juara OSN",
         "kategori" => "Kegiatan SMPI Tahun 2018"
     ],
@@ -21,7 +21,7 @@ $dataPhoto = [
         "kategori" => "Kegiatan SMPI Tahun 2019"
     ],
     [
-        "image" => "gambar1.jpg",
+        "image" => "gambar2.jpg",
         "title" => "Juara OSN",
         "kategori" => "Kegiatan SMPI Tahun 2018"
     ],
@@ -267,11 +267,11 @@ $style = "<style>
                     const photoItem = document.createElement('div');
                     photoItem.className = 'photo-item';
                     photoItem.innerHTML = `
-                        <img src="<?= base_url('assets/images/banner/') ?>/${photo.image}" alt="${photo.title}">
+                        <img src="<?= base_url('assets/img/banner/') ?>/${photo.image}" alt="${photo.title}">
                         <p class="photo-title">${photo.title}</p>
                     `;
                     photoItem.addEventListener('click', () => {
-                        openLightbox("<?= base_url('assets/images/banner/') ?>/" + photo.image);
+                        openLightbox("<?= base_url('assets/img/banner/') ?>/" + photo.image);
                     });
                     photoGrid.appendChild(photoItem);
                 });
