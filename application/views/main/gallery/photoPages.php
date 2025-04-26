@@ -98,8 +98,8 @@ $style = "<style>
             <?php if (!empty($photoThisPages)): ?>
                 <?php foreach ($photoThisPages as $kv): ?>
                     <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-                        <div class="card h-100 shadow-sm" onclick="openLightbox('<?= base_url('assets/images/banner/' . $kv["image"]); ?>')">
-                            <img src="<?= base_url('assets/images/banner/' . $kv["image"]); ?>" class="card-img-top gallery-image" alt="<?= $kv["title"]; ?>">
+                        <div class="card h-100 shadow-sm" onclick="openLightbox('<?= base_url('assets/img/banner/' . $kv["image"]); ?>')">
+                            <img src="<?= base_url('assets/img/banner/' . $kv["image"]); ?>" class="card-img-top gallery-image" alt="<?= $kv["title"]; ?>">
                             <div class="card-body">
                                 <p class="card-title text-dark text-center font-weight-bold"><?= $kv["title"]; ?></p>
                             </div>
