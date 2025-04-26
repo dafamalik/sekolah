@@ -9,7 +9,7 @@ class Overview extends CI_Controller
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/navbar');
 		$this->load->view('templates/topbar');
-		$this->load->view('main/information/calendar');
+		$this->load->view('main/profile/guru');
         $this->load->view('templates/footer');
 	}
 
