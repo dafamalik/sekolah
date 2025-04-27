@@ -13,6 +13,7 @@ class Overview extends CI_Controller
     $this->load->view('templates/footer');
 	}
 
+  // Menu Gallery
   public function schoolVideo() {
 		$data['title'] = "Kumpulan Video";
 		$this->load->view('templates/header', $data);
