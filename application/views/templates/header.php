@@ -21,6 +21,10 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flat-ui/2.3.0/css/flat-ui.min.css">
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="<?= base_url('assets/'); ?>css/style.css" rel="stylesheet" />
+        <!-- Calendar -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
 
         <style>
             * {
@@ -112,6 +116,135 @@
             .divider-custom .divider-custom-line:last-child {
                 margin-left: 1rem !important;
             }
+
+            .card-guru {
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                height: 30rem;
+                overflow: hidden;
+                cursor: pointer;
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 20px; /* Spasi antar card */
+            }
+
+            .card-guru img {
+                width: 100%;
+                height: auto;
+                display: block;
+                object-fit: cover;
+                border-radius-top-left: 5px;
+                border-radius-top-right: 5px;
+            }
+
+            .photo-title {
+                font-size: 0.9em;
+                color: #333;
+                text-align: center;
+                margin-bottom: 5px;
+            }
+
+            .video-container {
+                position: relative;
+                width: 100%;
+                padding-bottom: 56.25%; /* 16:9 aspect ratio */
+                overflow: hidden;
+            }
+
+            .video-container iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
         </style>
     </head>
     <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg bg-light fixed-top shadow-sm" id="mainNav">
+            <div class="container">
+                <div class="d-block">
+                    <a class="navbar-brand fw-bold fs-4" href="<?= base_url(); ?>">
+                        <img src="<?= base_url('assets/'); ?>img/icons/LogoSekolah.png" alt="Logo Sekolah">
+                        <span>SDN Rawa Buaya 09</span>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="bi-list"></i>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link me-lg-3" href="#page-top">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle me-lg-3" role="button" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                Profil
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Visi Misi dan Tujuan Sekolah</a></li>
+                                <li><a class="dropdown-item" href="#">Data Guru</a></li>
+                                <li><a class="dropdown-item" href="#">Data Tenaga Kependidikan</a></li>
+                                <li><a class="dropdown-item" href="#">Data Peserta Didik</a></li>
+                                <li><a class="dropdown-item" href="#">Data Kelas</a></li>
+                                <li><a class="dropdown-item" href="#">Struktur Organisasi</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle me-lg-3" role="button" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                Kesiswaan
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Pendaftaran Peserta Didik Baru</a></li>
+                                <li><a class="dropdown-item" href="#">Ekstrakulikuler</a></li>
+                                <li><a class="dropdown-item" href="#">Tata Tertib SD</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle me-lg-3" role="button" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                Informasi
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Bantuan Dana untuk Siswa</a></li>
+                                <li><a class="dropdown-item" href="#">Kalender Pendidikan</a></li>
+                                <li><a class="dropdown-item" href="#">Kontak</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle me-lg-3" role="button" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                Galeri
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Kumpulan Video Sekolah</a></li>
+                                <li><a class="dropdown-item" href="#">Kegiatan Siswa Siswi</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Background Video -->
+        <video class="bg-video" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop"><source src="<?= base_url('assets/'); ?>img/mp4/banner_video.mp4" type="video/mp4" /></video>
+        
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="masthead-content text-white">
+                <div class="container-fluid px-4 px-lg-0">
+                    <h1 class="heading-custom fst-italic lh-1 mb-4">Selamat Datang di Website Sekolah Kami</h1>
+                    <p class="fs-custom mb-5">
+                        Sekolah kami adalah tempat yang aman dan nyaman untuk belajar. Kami berkomitmen untuk memberikan pendidikan yang berkualitas kepada semua siswa kami. Kami berharap Anda dapat menemukan semua informasi yang Anda butuhkan di website kami.
+                    </p>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Social Icons-->
+        <div class="social-icons">
+            <div class="d-flex flex-row flex-lg-column justify-content-center align-items-center h-100 mt-3 mt-lg-0">
+                <a class="btn btn-dark m-3" href="#!"><i class="fab fa-twitter"></i></a>
+                <a class="btn btn-dark m-3" href="#!"><i class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-dark m-3" href="#!"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>

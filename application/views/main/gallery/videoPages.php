@@ -1,153 +1,161 @@
 <?php
 $dataVideo = [
     [
-        "image" => "gambar2.jpg",
         "title" => "Juara OSN",
-        "url" => "https://youtu.be/O1PkZaFy61Y?si=P-OxZcKZDnCuW5sg"
+        "video_id" => "n92IMrMMY6c" // Contoh ID video YouTube
     ],
     [
-        "image" => "gambar2.jpg",
         "title" => "Gerak Mulia",
-        "url" => "https://youtu.be/iQo-8wx0l0Y?si=CJkLHdMLgFRKEiR4"
+        "video_id" => "dQw4w9WgXcQ" // Contoh ID video YouTube
     ],
     [
-        "image" => "gambar2.jpg",
         "title" => "Juara OSN",
-        "url" => "https://youtu.be/O1PkZaFy61Y?si=P-OxZcKZDnCuW5sg"
+        "video_id" => "dQw4w9WgXcQ"
     ],
     [
-        "image" => "gambar2.jpg",
         "title" => "Gerak Mulia",
-        "url" => "https://youtu.be/iQo-8wx0l0Y?si=CJkLHdMLgFRKEiR4"
+        "video_id" => "dQw4w9WgXcQ"
     ],
     [
-        "image" => "gambar2.jpg",
         "title" => "Juara OSN",
-        "url" => "https://youtu.be/O1PkZaFy61Y?si=P-OxZcKZDnCuW5sg"
+        "video_id" => "dQw4w9WgXcQ"
     ],
     [
-        "image" => "gambar2.jpg",
         "title" => "Gerak Mulia",
-        "url" => "https://youtu.be/iQo-8wx0l0Y?si=CJkLHdMLgFRKEiR4"
+        "video_id" => "dQw4w9WgXcQ"
     ],
     [
-        "image" => "gambar2.jpg",
         "title" => "Gerak Mulia",
-        "url" => "https://youtu.be/iQo-8wx0l0Y?si=CJkLHdMLgFRKEiR4"
+        "video_id" => "dQw4w9WgXcQ"
     ],
-    // Tambahkan data lainnya...
+    // Tambahkan data lainnya dengan video_id yang sesuai...
 ];
 
-$perPage = 3;
-$totalData = count($dataVideo);
-$totalPages = ceil($totalData / $perPage);
-$currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
-$startIndex = ($currentPage - 1) * $perPage;
-$videoThisPages = array_slice($dataVideo, $startIndex, $perPage);
+$videoPerPages = 3;
+$video = count($dataVideo);
+$pages = ceil($video / $videoPerPages);
+
+$currentPages = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
+if ($currentPages < 1 || $currentPages > $pages) {
+    $currentPages = 1;
+}
 ?>
 
-<div class="container py-5">
-    <div class="row" id="video-container">
-        <?php if (!empty($videoThisPages)): ?>
-            <?php foreach ($videoThisPages as $kv): ?>
-                <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-                    <a href="<?= $kv["url"]; ?>" target="_blank">
-                        <div class="card h-100 shadow-sm">
-                            <img src="<?= base_url('assets/img/banner/' . $kv["image"]); ?>" class="card-img-top" alt="<?= $kv["title"]; ?>">
-                            <div class="card-body">
-                                <p class="card-title text-dark text-center font-weight-bold"><?= $kv["title"]; ?></p>
+<section class="bg-light">
+    <div class="container py-5">
+        <div class="row">
+            <?php if (!empty($videoThisPages = array_slice($dataVideo, ($currentPages - 1) * $videoPerPages, $videoPerPages))): ?>
+                <?php foreach ($videoThisPages as $kv): ?>
+                    <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+                        <a href="https://www.youtube.com/watch?v=<?php echo $kv["video_id"]; ?>" target="_blank">
+                            <div class="card h-100 shadow-sm">
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/<?php echo $kv["video_id"]; ?>"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-title text-dark text-center font-weight-bold"><?php echo $kv["title"]; ?></p>
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="col-12">
+                    <p class="text-center">Tidak ada konten untuk ditampilkan.</p>
                 </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <div class="col-12">
-                <p class="text-center">Tidak ada konten untuk ditampilkan.</p>
-            </div>
-        <?php endif; ?>
-    </div>
+            <?php endif; ?>
+        </div>
 
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item <?php if ($currentPage <= 1) { echo 'disabled'; } ?>">
-                <a class="page-link" href="#" data-page="<?php echo $currentPage - 1; ?>">Previous</a>
-            </li>
-            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                <li class="page-item <?php if ($i == $currentPage) { echo 'active'; } ?>">
-                    <a class="page-link" href="#" data-page="<?php echo $i; ?>"><?php echo $i; ?></a>
-                </li>
-            <?php endfor; ?>
-            <li class="page-item <?php if ($currentPage >= $totalPages) { echo 'disabled'; } ?>">
-                <a class="page-link" href="#" data-page="<?php echo $currentPage + 1; ?>">Next</a>
-            </li>
-        </ul>
-    </nav>
-</div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center" id="pagination-container">
+                </ul>
+        </nav>
+    </div>
+</section>
 
 <script>
-    const paginationLinks = document.querySelectorAll('.pagination a');
-    const videoContainer = document.getElementById('video-container');
+    const dataVideo = <?php echo json_encode($dataVideo); ?>;
+    const videoPerPages = <?php echo $videoPerPages; ?>;
+    const jumlahHalaman = <?php echo $pages; ?>;
+    let halamanAktif = <?php echo $currentPages; ?>;
+    const videoContainer = document.querySelector('.row');
+    const paginationContainer = document.getElementById('pagination-container');
 
-    paginationLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
-            const page = this.getAttribute('data-page');
-            loadVideos(page);
-        });
-    });
-
-    function loadVideos(page) {
-        // Kirim permintaan AJAX ke server untuk mendapatkan data video berdasarkan halaman
-        fetch(`?page=${page}`, {
-            method: 'GET',
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest' // Untuk menandakan ini adalah permintaan AJAX
-            }
-        })
-        .then(response => response.text())
-        .then(data => {
-            // Perbarui konten container video dengan data yang diterima
-            videoContainer.innerHTML = data;
-
-            // Perbarui status aktif pada link pagination
-            document.querySelectorAll('.pagination .page-item').forEach(item => {
-                item.classList.remove('active');
+    function tampilkanVideo(halaman) {
+        const indexAwal = (halaman - 1) * videoPerPages;
+        const dataHalamanIni = dataVideo.slice(indexAwal, indexAwal + videoPerPages);
+        let html = '';
+        if (dataHalamanIni.length > 0) {
+            dataHalamanIni.forEach(kv => {
+                html += `
+                    <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+                        <a href="https://www.youtube.com/watch?v=${kv.video_id}" target="_blank">
+                        <div class="card h-100 shadow-sm">
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/${kv.video_id}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-title text-dark text-center font-weight-bold">${kv.title}</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                `;
             });
-            const currentPageLink = document.querySelector(`.pagination a[data-page="${page}"]`);
-            if (currentPageLink) {
-                currentPageLink.parentNode.classList.add('active');
-            }
+        } else {
+            html = '<div class="col-12"><p class="text-center">Tidak ada konten untuk ditampilkan.</p></div>';
+        }
+        videoContainer.innerHTML = html;
+    }
 
-            // Perbarui status disabled pada tombol Previous/Next
-            const prevLink = document.querySelector('.pagination a[data-page="<?php echo $currentPage - 1; ?>"]');
-            const nextLink = document.querySelector('.pagination a[data-page="<?php echo $currentPage + 1; ?>"]');
-            const prevItem = prevLink ? prevLink.parentNode : null;
-            const nextItem = nextLink ? nextLink.parentNode : null;
-            const currentPageNum = parseInt(page);
+    function buatPagination() {
+        let paginationHTML = '';
+        if (halamanAktif > 1) {
+            paginationHTML += `<li class="page-item"><a class="page-link" href="#" data-halaman="${halamanAktif - 1}">Sebelumnya</a></li>`;
+        }
+        for (let i = 1; i <= jumlahHalaman; i++) {
+            const activeClass = (i === halamanAktif) ? 'active' : '';
+            paginationHTML += `<li class="page-item ${activeClass}"><a class="page-link" href="#" data-halaman="${i}">${i}</a></li>`;
+        }
+        if (halamanAktif < jumlahHalaman) {
+            paginationHTML += `<li class="page-item"><a class="page-link" href="#" data-halaman="${halamanAktif + 1}">Selanjutnya</a></li>`;
+        }
+        paginationContainer.innerHTML = paginationHTML;
 
-            if (prevItem) {
-                prevItem.classList.remove('disabled');
-                if (currentPageNum <= 1) {
-                    prevItem.classList.add('disabled');
+        // Tambahkan event listener untuk link pagination
+        const paginationLinks = paginationContainer.querySelectorAll('a.page-link');
+        paginationLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault(); // Mencegah link melakukan reload halaman
+                const targetHalaman = parseInt(this.dataset.halaman);
+                if (targetHalaman >= 1 && targetHalaman <= jumlahHalaman && targetHalaman !== halamanAktif) {
+                    halamanAktif = targetHalaman;
+                    tampilkanVideo(halamanAktif);
+                    buatPagination(); // Perbarui tampilan pagination
+                    // Atur URL di browser tanpa reload (opsional)
+                    const newUrl = new URL(window.location);
+                    newUrl.searchParams.set('halaman', halamanAktif);
+                    window.history.pushState({ path: newUrl.href }, '', newUrl.href);
                 }
-                prevLink.setAttribute('data-page', currentPageNum - 1);
-            }
-
-            if (nextItem) {
-                nextItem.classList.remove('disabled');
-                if (currentPageNum >= <?php echo $totalPages; ?>) {
-                    nextItem.classList.add('disabled');
-                }
-                nextLink.setAttribute('data-page', currentPageNum + 1);
-            }
-        })
-        .catch(error => {
-            console.error('Terjadi kesalahan:', error);
-            videoContainer.innerHTML = '<p class="text-center">Gagal memuat konten.</p>';
+            });
         });
     }
 
-    // Muat halaman pertama saat halaman dimuat
-    // loadVideos(1); // Ini tidak perlu karena konten awal sudah dimuat oleh PHP
+    // Panggil fungsi untuk pertama kali saat halaman dimuat
+    tampilkanVideo(halamanAktif);
+    buatPagination();
+
+    // Tangani perubahan URL history (jika pengguna menggunakan tombol back/forward browser)
+    window.addEventListener('popstate', function(event) {
+        const params = new URLSearchParams(window.location.search);
+        const halaman = parseInt(params.get('halaman')) || 1;
+        if (halaman >= 1 && halaman <= jumlahHalaman && halaman !== halamanAktif) {
+            halamanAktif = halaman;
+            tampilkanVideo(halamanAktif);
+            buatPagination();
+        }
+    });
 </script>
