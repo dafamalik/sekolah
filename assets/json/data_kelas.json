@@ -1,0 +1,134 @@
+[
+    {
+        "Id": "1",
+        "Kelas": "Kelas 1A",
+        "Jurusan": "Guru Kelas",
+        "WaliKelas": "Etty Rahmawati, S.Pd"
+    },
+    {
+        "Id": "2",
+        "Kelas": "Kelas 1B",
+        "Jurusan": "Guru Kelas",
+        "WaliKelas": "Etty Rahmawati, S.Pd"
+    },
+    {
+        "Id": "3",
+        "Kelas": "Kelas 1C",
+        "Jurusan": "Guru Kelas",
+        "WaliKelas": "Fera Damayanti, S.Pd"
+    },
+    {
+        "Id": "4",
+        "Kelas": "Kelas 2A",
+        "Jurusan": "Guru Kelas",
+        "WaliKelas": "Ayati Nufus, S.Pd"
+    },
+    {
+        "Id": "5",
+        "Kelas": "Kelas 2B",
+        "Jurusan": "Guru Kelas",
+        "WaliKelas": "Siti Mukminah, S.Pd"
+    },
+    {
+        "Id": "6",
+        "Kelas": "Kelas 2C",
+        "Jurusan": "Guru Kelas",
+        "WaliKelas": "Ismail, S.Pd"
+    },
+    {
+        "Id": "7",
+        "Kelas": "Kelas 2D",
+        "Jurusan": "Guru Kelas",
+        "WaliKelas": "Aonur Rahmah, S.Pd"
+    },
+    {
+        "Id": "8",
+        "Kelas": "Kelas 3A",
+        "Jurusan": "Guru Kelas",
+        "WaliKelas": "Siti Fathiyah, S.Pd"
+    },
+    {
+        "Id": "9",
+        "Kelas": "Kelas 3B",
+        "Jurusan": "Guru Kelas",
+        "WaliKelas": "Naswan Darmadi, S.Pd. SD"
+    },
+    {
+        "Id": "10",
+        "Kelas": "Kelas 3C",
+        "Jurusan": "Guru Kelas",
+        "WaliKelas": "Nurhayati Salimah, S.Pd"
+    },
+    {
+        "Id": "11",
+        "Kelas": "Kelas 3D",
+        "Jurusan": "Guru Kelas",
+        "WaliKelas": "Saryono, M.Pd"
+    },
+    {
+        "Id": "12",
+        "Kelas": "Kelas 4A",
+        "Jurusan": "Guru Kelas",
+        "WaliKelas": "Lia Keswari, S.Pd"
+    },
+    {
+        "Id": "13",
+        "Kelas": "Kelas 4B",
+        "Jurusan": "Guru Kelas",
+        "WaliKelas": "Dasinah, M.Pd"
+    },
+    {
+        "Id": "14",
+        "Kelas": "Kelas 5A",
+        "Jurusan": "Guru Kelas",
+        "WaliKelas": "Wahyuning Tri Mardiyanti, S.Pd"
+    },
+    {
+        "Id": "15",
+        "Kelas": "Kelas 5B",
+        "Jurusan": "Guru Kelas",
+        "WaliKelas": "Suli Handayani, S.Pd"
+    },
+    {
+        "Id": "16",
+        "Kelas": "Kelas 5C",
+        "Jurusan": "Guru Kelas",
+        "WaliKelas": "Solikah, S.Pd. SD"
+    },
+    {
+        "Id": "17",
+        "Kelas": "Kelas 5D",
+        "Jurusan": "Guru Kelas",
+        "WaliKelas": "Nur Ayati, S.Pd"
+    },
+    {
+        "Id": "18",
+        "Kelas": "Kelas 5E",
+        "Jurusan": "Guru Kelas",
+        "WaliKelas": "Mardiana, S.Pd"
+    },
+    {
+        "Id": "19",
+        "Kelas": "Kelas 6A",
+        "Jurusan": "Guru Kelas",
+        "WaliKelas": "Romika Lisda Siahaan, S.Pd"
+    },
+    {
+        "Id": "20",
+        "Kelas": "Kelas 6B",
+        "Jurusan": "Guru Kelas",
+        "WaliKelas": "Marlia Laily Artati, M.Pd"
+    },
+    {
+        "Id": "21",
+        "Kelas": "Kelas 6C",
+        "Jurusan": "Guru Kelas",
+        "WaliKelas": "Bayu Rianto, S.Pd"
+    },
+    {
+        "Id": "22",
+        "Kelas": "Kelas 6D",
+        "Jurusan": "Guru Kelas",
+        "WaliKelas": "'Silvia Dwi Prastiwi, S.Pd"
+    }
+]
