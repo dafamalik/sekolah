@@ -1,64 +1,16 @@
 <?php
-// Data guru (contoh)
-$dataGuru = [
-    [
-        'id' => 1,
-        'nama' => 'Ahmad Muhrtarom, S.Pd.I',
-        'gelar' => 'Guru Pendidikan Agama Islam',
-        'nip' => '197710262010011012',
-        'foto' => 'assets/img/imgGuru/Ahmad_Muhtarom.png' // Ganti dengan path foto sebenarnya
-    ],
-    [
-        'id' => 2,
-        'nama' => 'Andheny Purwasih',
-        'gelar' => 'S.Pd',
-        'nip' => '198711062010012022',
-        'foto' => 'assets/img/imgGuru/Ahmad_Muhtarom.png'
-    ],
-    [
-        'id' => 3,
-        'nama' => 'Bahdian',
-        'gelar' => 'S.Pd',
-        'nip' => '199904272024211001',
-        'foto' => 'assets/img/imgGuru/Ahmad_Muhtarom.png'
-    ],
-    [
-        'id' => 4,
-        'nama' => 'Nama Guru 4',
-        'gelar' => 'S.Pd',
-        'nip' => 'NIP Guru 4',
-        'foto' => 'assets/img/imgGuru/Ahmad_Muhtarom.png'
-    ],
-    [
-        'id' => 5,
-        'nama' => 'Nama Guru 5',
-        'gelar' => 'S.Pd',
-        'nip' => 'NIP Guru 5',
-        'foto' => 'assets/img/imgGuru/Ahmad_Muhtarom.png'
-    ],
-    [
-        'id' => 6,
-        'nama' => 'Nama Guru 6',
-        'gelar' => 'S.Pd',
-        'nip' => 'NIP Guru 6',
-        'foto' => 'assets/img/imgGuru/Ahmad_Muhtarom.png'
-    ],
-    [
-        'id' => 7,
-        'nama' => 'Nama Guru 6',
-        'gelar' => 'S.Pd',
-        'nip' => 'NIP Guru 6',
-        'foto' => 'assets/img/imgGuru/Ahmad_Muhtarom.png'
-    ],
-    // Tambahkan data guru lainnya di sini
-];
-
-// Pagination
-$jumlahDataPerHalaman = 4;
+$jumlahDataPerHalaman = 8;
 $jumlahData = count($dataGuru);
 $jumlahHalaman = ceil($jumlahData / $jumlahDataPerHalaman);
 $halamanAktif = (isset($_GET['halaman'])) ? $_GET['halaman'] : 1;
 $indexAwalData = ($halamanAktif - 1) * $jumlahDataPerHalaman;
+
+// Tambahkan base_url ke setiap foto guru
+foreach ($dataGuru as &$guru) {
+    $guru['Foto'] = base_url($guru['Foto']);
+}
+unset($guru); // hindari efek samping referensi
+
 $dataGuruHalamanIni = array_slice($dataGuru, $indexAwalData, $jumlahDataPerHalaman);
 ?>
 
@@ -66,18 +18,7 @@ $dataGuruHalamanIni = array_slice($dataGuru, $indexAwalData, $jumlahDataPerHalam
         <div class="container">
             <h1>Data Guru</h1>
             <div class="row" id="data-guru-container">
-                <?php foreach ($dataGuruHalamanIni as $guru) : ?>
-                    <div class="col-md-3">
-                        <div class="photo-item card-guru" style="cursor: pointer;" onclick="window.location.href='detail_guru.php?id=<?php echo $guru['id']; ?>'">
-                            <img src="<?php echo $guru['foto']; ?>" alt="<?php echo $guru['nama']; ?>" style="width: 100%; height: auto; display: block; object-fit: cover; border-radius-top-left: 5px; border-radius-top-right: 5px;">
-                            <div style="padding: 10px; text-align: center;">
-                                <h6 class="photo-title" style="font-size: 0.9em; color: #333; margin-bottom: 5px;"><?php echo $guru['nama']; ?></h6>
-                                <p style="font-size: 0.8em; color: #666; margin-bottom: 10px;">NIP: <?php echo $guru['nip']; ?></p>
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
+                </div>
 
             <nav aria-label="Halaman Data Guru">
                 <ul class="pagination justify-content-center" id="pagination-container">
@@ -87,29 +28,36 @@ $dataGuruHalamanIni = array_slice($dataGuru, $indexAwalData, $jumlahDataPerHalam
     </section>
 
     <script>
-        const dataGuru = <?php echo json_encode($dataGuru); ?>;
+        const dataGuru = <?php echo json_encode($dataGuru ?? []); ?>;
+        console.log(dataGuru);
         const jumlahDataPerHalaman = <?php echo $jumlahDataPerHalaman; ?>;
         const jumlahHalaman = <?php echo $jumlahHalaman; ?>;
         let halamanAktif = <?php echo $halamanAktif; ?>;
         const dataGuruContainer = document.getElementById('data-guru-container');
         const paginationContainer = document.getElementById('pagination-container');
+        const baseUrl = '<?php echo base_url(); ?>'; // Pastikan base_url() sudah didefinisikan di CodeIgniter
+
+        // Struktur HTML untuk satu item guru
+        function buatItemGuruHTML(guru) {
+            return `
+                <div class="col-md-3">
+                    <div class="photo-item card-guru" style="cursor: pointer;" onclick="window.location.href='${baseUrl}overview/detailGuru?id=${guru.Id}'">
+                        <img src="${guru.Foto}" alt="${guru.Nama}" style="width: 100%; height: 30rem; display: block; object-fit: cover; border-top-left-radius: 5px; border-top-right-radius: 5px;">
+                        <div style="padding: 10px; text-align: center;">
+                            <h6 class="photo-title" style="font-size: 0.9em; color: #333; margin-bottom: 5px;">${guru.Nama}</h6>
+                            <p style="font-size: 0.8em; color: #666; margin-bottom: 10px;">NIP: ${guru.NIP}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
 
         function tampilkanDataGuru(halaman) {
             const indexAwal = (halaman - 1) * jumlahDataPerHalaman;
             const dataHalamanIni = dataGuru.slice(indexAwal, indexAwal + jumlahDataPerHalaman);
             let html = '';
             dataHalamanIni.forEach(guru => {
-                html += `
-                    <div class="col-md-3">
-                        <div class="photo-item card-guru" style="cursor: pointer;" onclick="window.location.href='detail_guru.php?id=${guru.id}'">
-                            <img src="${guru.foto}" alt="${guru.nama}" style="width: 100%; height: auto; display: block; object-fit: cover; border-radius-top-left: 5px; border-radius-top-right: 5px;">
-                            <div style="padding: 10px; text-align: center;">
-                                <h6 class="photo-title" style="font-size: 0.9em; color: #333; margin-bottom: 5px;">${guru.nama}, ${guru.gelar}</h6>
-                                <p style="font-size: 0.8em; color: #666; margin-bottom: 10px;">NIP: ${guru.nip}</p>
-                            </div>
-                        </div>
-                    </div>
-                `;
+                html += buatItemGuruHTML(guru);
             });
             dataGuruContainer.innerHTML = html;
         }

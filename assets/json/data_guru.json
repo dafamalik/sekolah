@@ -9,12 +9,13 @@
         "Jabatan": "Kepala Sekolah",
         "Pangkat Golongan": "III/c",
         "Pendidikan": "S2",
-        "Mata Pelajaran": "",
+        "Mata Pelajaran": "-",
         "Jenis Kelamin": "P",
         "Agama": "Islam",
         "Tempat, Tanggal Lahir": "Madiun, 15 November 1972",
         "Alamat": "Jl. Permata I No. 7 RT05/RW11 Tegal Alur Kalideres",
-        "Telepon": "08174890919"
+        "Telepon": "08174890919",
+        "Foto": "assets/img/imgGuru/NaswanDarmadi.jpeg"
     },
     {
         "Id": "2",

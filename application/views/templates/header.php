@@ -128,15 +128,6 @@
                 margin-bottom: 20px; /* Spasi antar card */
             }
 
-            .card-guru img {
-                width: 100%;
-                height: auto;
-                display: block;
-                object-fit: cover;
-                border-radius-top-left: 5px;
-                border-radius-top-right: 5px;
-            }
-
             .photo-title {
                 font-size: 0.9em;
                 color: #333;
