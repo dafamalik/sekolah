@@ -209,4 +209,13 @@ class Overview extends CI_Controller
 		$this->load->view('main/information/financialAssStudent');
         $this->load->view('templates/footer');
     }
+
+    public function rules() {
+        $data['title'] = "Tata Tertib Sekolah";
+		$this->load->view('templates/header', $data);
+        $this->load->view('templates/navbar');
+        $this->load->view('templates/topbar');
+		$this->load->view('main/studentship/schoolRules');
+        $this->load->view('templates/footer');
+    }
 }
