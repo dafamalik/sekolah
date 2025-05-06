@@ -6,7 +6,7 @@ $dataVideo = [
     ],
     [
         "title" => "Gerak Mulia",
-        "video_id" => "dQw4w9WgXcQ" // Contoh ID video YouTube
+        "video_id" => "3eSQFgNayPU" // Contoh ID video YouTube
     ],
     [
         "title" => "Juara OSN",
